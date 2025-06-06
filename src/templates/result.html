@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>비교 결과</title>
+    <style>
+        /* 전체 페이지 기본 스타일 설정 */
+        body {
+            font-family: 'Apple SD Gothic Neo', sans-serif;
+            background-color: #f5f7fa;
+            padding: 40px;
+            margin: 0;
+        }
+
+        /* 제목 스타일 */
+        h2, h3 {
+            color: #333;
+        }
+
+        /* 라벨 기본 스타일 */
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        ul {
+            background-color: #fff;
+            padding: 15px 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+        }
+
+        /* 리스트 항목 간격 설정 */
+        li {
+            margin-bottom: 8px;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #436e9b;
+            font-weight: bold;
+        }
+
+        /* 구분선 간격 */
+        hr {
+            margin: 30px 0;
+        }
+        /* 링크 마우스 오버 시 스타일 */
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- 페이지 제목 -->
+    <h2>📋 비교 결과</h2>
+
+    <!-- 리스트에 있고 인식된 항목 (정상적으로 챙긴 물품) -->
+    <h3>✅ 챙긴 물품:</h3>
+    <ul>
+        {% for item in compare_result.matched %}
+            <li>{{ item }}</li>  <!-- 챙긴 항목 출력 -->
+        {% endfor %}
+    </ul>
+    
+    <!-- 리스트에 있지만 인식되지 않은 항목 (아직 챙기지 않은 물품) -->
+    <h3>❌ 아직 챙기지 않은 물품:</h3>
+    <ul>
+        {% for item in compare_result.missing %}
+            <li>{{ item }}</li>
+        {% endfor %}
+    </ul>
+    
+    <!-- 리스트에는 없지만 인식된 항목 (예상 외 물품) -->
+    <h3>➕ 리스트에 없지만 인식된 물품:</h3>
+    <ul>
+        {% for item in compare_result.extra %}
+            <li>{{ item }}</li>
+        {% endfor %}
+    </ul>
+
+    <!-- 다시 업로드 페이지로 이동하는 링크 -->
+    <a href="/">🔄 다시 업로드</a>
+    <hr>
+    <!-- 날씨 기반 추천 보기로 이동하는 링크 -->
+    <p><a href="/weather">🌤️ 날씨 기반 추천 보기</a></p>
+</body>
+</html>
