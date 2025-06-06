@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>비교 리스트 수정</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard&display=swap" rel="stylesheet">
+    <style>
+        /* 기본 바디 설정 */
+        body {
+            font-family: 'Pretendard', sans-serif;
+            background: #f5f7fa;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        form {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            max-width: 600px;
+            margin: auto;
+        }
+        input[type="text"], textarea, input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 8px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+        input[type="submit"] {
+            background-color: #6a9ec1;
+            color: white;
+            border: none;
+            padding: 10px 17px;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        input[type="submit"]:hover {
+            background-color: #2980b9;
+        }
+        /* 리스트 항목 */
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        li {
+            margin: 8px 0;
+        }
+        label {
+            font-size: 1rem;
+        }
+        /* 링크 스타일 */
+        a {
+            color: #316486;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+
+        input[type="checkbox"]:checked {
+        accent-color: #6289b2;
+        }
+    </style>
+</head>
+<body>
+    <!-- 제목 -->
+    <h2 style="text-align:center;">📝 비교할 아이템 목록에 추가</h2>
+    <!-- 폼 시작 -->
+    <form method="post">
+        <!-- 항목 추가 textarea -->
+        <textarea name="items" rows="5" placeholder="한 줄에 하나씩 작성하세요"></textarea>
+        <!-- 추가 버튼 -->
+        <input type="submit" name="action" value="리스트에 추가">
+        <hr>
+        <!-- 현재 리스트에서 삭제할 항목 선택 -->
+        <p><strong>📋 현재 비교 리스트 (삭제하려면 체크):</strong></p>
+        <ul>
+            {% for line in current_items %}
+            <li>
+                <label>
+                    <input type="checkbox" name="delete_items" value="{{ line }}">
+                    {{ line }}
+                </label>
+            </li>
+            {% endfor %}
+        </ul>
+        <!-- 삭제 버튼 -->
+        <input type="submit" name="action" value="선택 항목 삭제">
+    </form>
+
+    <!-- 돌아가기 링크 -->
+    <div style="text-align:center; margin-top:20px;">
+        <a href="{{ url_for('upload') }}">← 돌아가기</a>
+    </div>
+</body>
+</html>
