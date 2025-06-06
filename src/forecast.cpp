@@ -108,7 +108,7 @@ void recommend_items_by_forecast(const nlohmann::json& forecast_json, ostream& o
 }
 
 int main() {
-    string api_key = "c06ef023b235507e0cd1b95e67c2a465";
+    string api_key = "개인 api-key";
     string city = "Seoul";
 
     string forecast_data = get_weather_forecast(api_key, city);    // 날씨 예보 가져오기
